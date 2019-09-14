@@ -6,6 +6,87 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>messing-with-lastfm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <style>
+      * {
+  box-sizing: border-box; }
+
+body {
+  font-family: "Libre Franklin", "Helvetica", sans-serif; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+.panel {
+  padding: 5% 0; }
+
+#hero {
+  background: #b90000;
+  color: #fff; }
+  #hero h1 {
+    font-size: 3.2rem;
+    text-transform: uppercase; }
+
+#nowPlaying.true {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #b90000;
+  border-radius: 5px; }
+
+#topArtists {
+  min-height: 620px; }
+
+#list {
+  display: flex;
+  flex-wrap: wrap; }
+
+.artist {
+  position: relative;
+  background: grey;
+  min-height: 100px;
+  position: relative;
+  flex-basis: 100%;
+  width: 100%; }
+  .artist:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 100%; }
+  .artist > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  @media (min-width: 576px) {
+    .artist {
+      flex-basis: 100%;
+      width: 100%; } }
+  @media (min-width: 768px) {
+    .artist {
+      flex-basis: 50%;
+      width: 50%; } }
+  @media (min-width: 992px) {
+    .artist {
+      flex-basis: 20%;
+      width: 20%; } }
+  @media (min-width: 1200px) {
+    .artist {
+      flex-basis: 20%;
+      width: 20%; } }
+
+.artistInfo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 0;
+  bottom: 15px;
+  color: #fff; }
+
+/*# sourceMappingURL=style.css.map */
+    </style>
   </head>
   <body>
     <noscript>
