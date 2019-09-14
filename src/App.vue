@@ -19,7 +19,7 @@
             <p class="text-center">
               This simple vue app fetches data from <a target="_blank" href="https://www.last.fm/user/Moglash">my Last.FM account</a>.
               Unfortuanetly the Last.FM API does not provide the possibility to retrieve artist images anymore. My next goal is to retrieve artist images
-              from another source using the MBID (Musicbrainz ID).
+              from another source, for example using the MBID (Musicbrainz ID). Furthermore I want to add more features, like pagination.
             </p>
           </div>
         </div>
@@ -32,7 +32,7 @@
             <p class="text-center">
               <strong>Recent track: </strong><span id="latestTrack">{{ currentlyPlaying }}</span>
             </p>
-            <select value="overall" v-model="period" @change="getArtist($event)" class="custom-select">
+            <select value="overall" v-model="period" @change="getArtistsFromPeriod($event)" class="custom-select">
               <option value="" selected disabled hidden>Choose here</option>
               <option value="7day">Last 7 days</option>
               <option value="1month">Last 30 days</option>
@@ -93,21 +93,10 @@ export default {
     setInterval( async () => {
       this.currentlyPlaying = await LastFmService.getCurrentTrack();
     }, 10000)
-    
-
   },
   methods: {
-
-    async getArtist(period){
+    async getArtistsFromPeriod(period){
       this.data = await LastFmService.getArtistsFromPeriod(period.target.value)
-    },
-
-     getArtistImage(artist){
-      if(artist == "Radiohead"){
-        return "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/05/RadioheadGettyImages-80530620-920x584.jpg"
-      } else if(artist == "David Bowie") {
-        return "https://img.discogs.com/eyk-jmmtAvlyeCb4Zj4N4LTejsw=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-10263-1521181152-8217.jpeg.jpg"
-      }
     }
   }
   

@@ -7,7 +7,6 @@ const apiKey = "2d03e7341ad8155773382f8b28a2e0c0"
 class LastFmService {
 
 	
-
     static getTopArtists(){
 
         return new Promise( async (resolve, reject) => {
@@ -53,6 +52,7 @@ class LastFmService {
         })
     }
 
+    
 }
 
 export default LastFmService;
