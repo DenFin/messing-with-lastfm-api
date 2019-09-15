@@ -1,9 +1,11 @@
 import axios from 'axios'
 
 const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
+const urlTopTracks = `http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
 const lastFmApi = "http://ws.audioscrobbler.com"
 const userName = "Moglash"
 const apiKey = "2d03e7341ad8155773382f8b28a2e0c0"
+
 class LastFmService {
 
 	
@@ -52,7 +54,20 @@ class LastFmService {
         })
     }
 
-    
+    static getTopTracksFromPeriod(period){
+        return new Promise ( async (resolve, reject) => {
+            try{
+                const res = await axios.get(`${urlTopTracks}&period=${period}`);
+                const data = res.data.toptracks.track
+                console.log(data)
+                resolve(data)
+            } catch(error){
+                reject(error)
+            }
+        })
+    }
+
+
 }
 
 export default LastFmService;
