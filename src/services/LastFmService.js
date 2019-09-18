@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
-const urlTopTracks = `http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
-const lastFmApi = "http://ws.audioscrobbler.com"
+const url = `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
+const urlTopTracks = `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=Moglash&api_key=5042d5723800d5be432a687c5eacf45d&format=json`
+const lastFmApi = "https://ws.audioscrobbler.com"
 const userName = "Moglash"
 const apiKey = "2d03e7341ad8155773382f8b28a2e0c0"
 

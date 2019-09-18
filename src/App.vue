@@ -47,29 +47,8 @@
         </div>
       </div>
       <div class="container">
-          <div id="list">
-            <div style="width:100%;">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Playcount</th>
-                    <th scope="col">MBID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(artist, index) in topArtists" v-bind:key="artist.name">
-                    <th scope="row">{{ index + 1 }}</th>
-                    <td>{{ artist.name }}</td>
-                    <td>{{ artist.playcount }}</td>
-                    <td>{{ artist.mbid }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+         <TopArtistsList />
+      </div>
     </section>
     <section class="panel bg-light">
       <div class="container">
@@ -77,35 +56,8 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h2>Top Tracks</h2>
             <label for="">Choose a time period</label>
-            <select value="overall" v-model="periodTracks" @change="getTracksFromPeriod($event)" class="custom-select">
-              <option value="" selected disabled hidden>Choose here</option>
-              <option value="7day">Last 7 days</option>
-              <option value="1month">Last 30 days</option>
-              <option value="3month">Last 90 days</option>
-              <option value="6month">Last 180 days</option>
-              <option value="12month">Last 365 days</option>
-              <option selected value="overall" >All time</option>
-            </select>
-            <div style="width:100%;">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Track</th>
-                    <th scope="col">Artist</th>
-                    <th scope="col">Playcount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(track, index) in topTracks" v-bind:key="track.name">
-                    <th scope="row">{{ index + 1 }}</th>
-                    <td>{{ track.name }}</td>
-                    <td>{{ track.artist.name }}</td>
-                    <td>{{ track.playcount }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <SelectDropdown @data="updateData" />
+            <TopTracksList />
           </div>
         </div>
       </div>
@@ -117,15 +69,25 @@
 <script>
 import LastFmService from './services/LastFmService'
 
+import SelectDropdown from './components/SelectDropdown'
+import TopArtistsList from './components/TopArtistsList'
+import TopTracksList from './components/TopTracksList'
+
 export default {
   name: 'app',
+  components: {
+    SelectDropdown,
+    TopArtistsList,
+    TopTracksList
+  },
   data(){
     return {
       topArtists: '',
       topTracks: '',
       currentlyPlaying: '',
       period: '',
-      periodTracks: ''
+      periodTracks: '',
+      childData: ''
     }
   },
   async created(){
@@ -137,6 +99,9 @@ export default {
     }, 10000)
   },
   methods: {
+    updateData(test){
+      this.childData = test
+    },
     async getArtistsFromPeriod(period){
       this.topArtists = await LastFmService.getArtistsFromPeriod(period.target.value)
     },
